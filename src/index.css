@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/*
+  Base/Default theme (can be the 'Persona' theme itself, or a generic default)
+  The @theme directive automatically creates corresponding utility classes
+  (e.g., --color-primary will create bg-primary, text-primary, border-primary etc.)
+*/
+@theme {
+  /* Colors */
+  --color-primary: #e62323; /* Persona's iconic red */
+  --color-secondary: #fcd34d; /* Persona's yellow */
+  --color-text-base: #2d3748; /* Dark text */
+  --color-text-muted: #718096; /* Muted text */
+  --color-background: #fefcbf; /* Light yellow background */
+  --color-surface: #ffffff; /* Card/surface background */
+  --color-border: #fed7aa; /* Peach border */
+}
+
+/* Nier Theme - Overrides values when data-theme='nier' is applied */
+html[data-theme="nier"] {
+  /* Colors */
+  --color-primary: #838383; /* Example Nier primary */
+  --color-secondary: #e2e8f0; /* Example Nier secondary */
+
+  --color-text-base: #4d493e; /* $color from your snippet */
+  --color-text-muted: #718096; /* Example muted text */
+
+  --color-background: #c8c2aa; /* $bgColor from your snippet */
+  --color-surface: #f8f8f0; /* A slightly lighter surface if needed */
+  --color-border: #4d493e; /* Border color matching $color */
+
+  /* Define the color used for the grid lines as an RGB variable */
+  --color-grid-line-rgb: 255 0 0; /* Black for rgba(0,0,0,.07) */
+
+  --font-sans: "Noto Sans", sans-serif; /* As per your snippet */
+  --font-serif: "Times New Roman", serif;
+
+  --radius-base: 0rem; /* No rounded corners */
+  --shadow-base: none; /* No shadows */
+
+  body {
+    background-color: var(--color-background);
+    background-size: 4px 4px;
+    background-image: linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.07) 4px
+      ),
+      linear-gradient(transparent, transparent 3px, rgba(0, 0, 0, 0.07) 4px);
+    background-repeat: repeat; /* Crucial for grids! Ensure the pattern tiles */
+    /* Inner box shadow */
+    box-shadow: inset 0 0 150px rgba(var(--color-text-base-rgb), 0.4),
+      inset 0 0 150px rgba(var(--color-text-base-rgb), 0.3);
+
+    /* Other body styles */
+    color: var(--color-text-base);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    margin: 0;
+    min-height: 100vh; /* Important for seeing the background fully */
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0.1rem;
+  }
+}
