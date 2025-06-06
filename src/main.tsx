@@ -30,9 +30,9 @@ const router = createBrowserRouter([
 ]);
 
 const Root = () => {
-    useEffect(() => {
+  useEffect(() => {
     // On component mount and theme change, update the data-theme attribute
-    document.documentElement.setAttribute('data-theme', 'nier');
+    document.documentElement.setAttribute("data-theme", "nier");
   }, []);
   return (
     <div className="">
@@ -40,7 +40,7 @@ const Root = () => {
       <RouterProvider router={router}>
         <NavigationBar />
       </RouterProvider>
-    </div >
+    </div>
   );
 };
 
