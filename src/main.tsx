@@ -10,24 +10,29 @@ import NavigationBar from "./components/navigationBar";
 import Layout from "./components/layout";
 import { Outlet } from "react-router";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Outlet />,
+      children: [
+        { index: true, element: <Home /> }, // index route for "/"
+      ],
+    },
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "/about_me", element: <AboutMe /> },
+        { path: "/experience", element: <Experience /> },
+        { path: "/how_this_was_made", element: <HowThisWasMade /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Outlet />,
-    children: [
-      { index: true, element: <Home /> }, // index route for "/"
-    ],
+    basename: "/portfolio-game-screens",
   },
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { path: "/about_me", element: <AboutMe /> },
-      { path: "/experience", element: <Experience /> },
-      { path: "/how_this_was_made", element: <HowThisWasMade /> },
-    ],
-  },
-]);
+);
 
 const Root = () => {
   useEffect(() => {
