@@ -170,7 +170,9 @@ const DotLineDistortion = () => {
       await Assets.load({
         src: "/portfolio-game-screens/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from("/portfolio-game-screens/distortion_map.jpeg");
+      const displacementSprite = Sprite.from(
+        "/portfolio-game-screens/distortion_map.jpeg",
+      );
 
       displacementSprite.texture.source.addressMode = "repeat";
       const displacementFilter = new DisplacementFilter({
@@ -307,7 +309,9 @@ const ClickAnyButtonDistortion = () => {
       await Assets.load({
         src: "/portfolio-game-screens/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from("/portfolio-game-screens/distortion_map.jpeg");
+      const displacementSprite = Sprite.from(
+        "/portfolio-game-screens/distortion_map.jpeg",
+      );
 
       displacementSprite.texture.source.wrapMode = "repeat";
       const displacementFilter = new DisplacementFilter({
