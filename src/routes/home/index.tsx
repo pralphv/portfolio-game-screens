@@ -168,9 +168,11 @@ const DotLineDistortion = () => {
   useEffect(() => {
     async function loadData() {
       await Assets.load({
-        src: "/distortion_map.jpeg",
+        src: "/portfolio-game-screens/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from("/distortion_map.jpeg");
+      const displacementSprite = Sprite.from(
+        "/portfolio-game-screens/distortion_map.jpeg",
+      );
 
       displacementSprite.texture.source.addressMode = "repeat";
       const displacementFilter = new DisplacementFilter({
@@ -305,9 +307,11 @@ const ClickAnyButtonDistortion = () => {
   useEffect(() => {
     async function loadData() {
       await Assets.load({
-        src: "/distortion_map.jpeg",
+        src: "/portfolio-game-screens/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from("/distortion_map.jpeg");
+      const displacementSprite = Sprite.from(
+        "/portfolio-game-screens/distortion_map.jpeg",
+      );
 
       displacementSprite.texture.source.wrapMode = "repeat";
       const displacementFilter = new DisplacementFilter({
