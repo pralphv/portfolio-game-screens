@@ -16,7 +16,6 @@ import {
 } from "pixi.js";
 extend({ Graphics, Sprite, Texture, Text, Container });
 
-
 const Stars = () => {
   const { app } = useApplication();
   const [masterAlpha, setMasterAlpha] = useState(0);
@@ -93,7 +92,7 @@ const Background2 = () => {
   app.stage.filters = [noiseFilter];
 
   const maskSprite = new Sprite(
-    createOvalFadeMaskTexture(app.screen.width * 1.1, app.screen.height * 1.1)
+    createOvalFadeMaskTexture(app.screen.width * 1.1, app.screen.height * 1.1),
   );
 
   const container = new Container();
@@ -135,7 +134,7 @@ function createBlurredCircleTexture(radius = 10, blur = 15) {
     0,
     center,
     center,
-    radius + blur
+    radius + blur,
   );
   gradient.addColorStop(0, "rgba(255,255,255,0.8)");
   gradient.addColorStop(1, "rgba(255,255,255,0)");
@@ -171,9 +170,7 @@ const DotLineDistortion = () => {
       await Assets.load({
         src: "/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from(
-        "/distortion_map.jpeg"
-      );
+      const displacementSprite = Sprite.from("/distortion_map.jpeg");
 
       displacementSprite.texture.source.addressMode = "repeat";
       const displacementFilter = new DisplacementFilter({
@@ -266,10 +263,10 @@ const ClickAnyButton = () => {
     async function load() {
       for (const text of fullText) {
         const randomAlphabet = String.fromCharCode(
-          65 + Math.floor(Math.random() * 26)
+          65 + Math.floor(Math.random() * 26),
         );
         setVisibleText(
-          (prev) => prev.slice(0, prev.length - 1) + text + randomAlphabet
+          (prev) => prev.slice(0, prev.length - 1) + text + randomAlphabet,
         );
         await new Promise((r) => setTimeout(r, 60));
       }
@@ -310,9 +307,7 @@ const ClickAnyButtonDistortion = () => {
       await Assets.load({
         src: "/distortion_map.jpeg",
       });
-      const displacementSprite = Sprite.from(
-        "/distortion_map.jpeg"
-      );
+      const displacementSprite = Sprite.from("/distortion_map.jpeg");
 
       displacementSprite.texture.source.wrapMode = "repeat";
       const displacementFilter = new DisplacementFilter({
@@ -370,9 +365,9 @@ const Particles = () => {
   const fireflies = useMemo(
     () =>
       Array.from({ length: 15 }, () =>
-        createFirefly(app.screen.width, app.screen.height)
+        createFirefly(app.screen.width, app.screen.height),
       ),
-    [app.screen.width, app.screen.height]
+    [app.screen.width, app.screen.height],
   );
   useTick((delta) => {
     for (let i = 0; i < fireflies.length; i++) {
@@ -386,7 +381,7 @@ const Particles = () => {
         delta.deltaTime;
       fireflies[i].startigAlpha = Math.min(
         0.6,
-        fireflies[i].startigAlpha + 0.001
+        fireflies[i].startigAlpha + 0.001,
       );
       fireflies[i].alpha =
         Math.min(0.6, fireflies[i].startigAlpha) +
@@ -410,26 +405,6 @@ const Particles = () => {
       scale={f.scale}
     />
   ));
-};
-
-const BottomText = () => {
-  const { app } = useApplication();
-
-  return (
-    <pixiText
-      text={"NieR: Automata inspired"}
-      anchor={0.5}
-      x={app.screen.width / 2}
-      y={app.screen.height * 0.9}
-      style={
-        new TextStyle({
-          fontFamily: "PixelOperator, monospace",
-          fontSize: 12,
-          fill: "#F7F7F6",
-        })
-      }
-    />
-  );
 };
 
 const ScreenTransition = ({ onComplete }: { onComplete: () => void }) => {
