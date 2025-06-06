@@ -412,26 +412,6 @@ const Particles = () => {
   ));
 };
 
-const BottomText = () => {
-  const { app } = useApplication();
-
-  return (
-    <pixiText
-      text={"NieR: Automata inspired"}
-      anchor={0.5}
-      x={app.screen.width / 2}
-      y={app.screen.height * 0.9}
-      style={
-        new TextStyle({
-          fontFamily: "PixelOperator, monospace",
-          fontSize: 12,
-          fill: "#F7F7F6",
-        })
-      }
-    />
-  );
-};
-
 const ScreenTransition = ({ onComplete }: { onComplete: () => void }) => {
   const { app } = useApplication();
   const [alpha, setAlpha] = useState(0);

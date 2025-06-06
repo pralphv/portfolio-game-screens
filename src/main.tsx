@@ -36,6 +36,7 @@ const Root = () => {
   }, []);
   return (
     <div className="">
+      {/* @ts-ignore */}
       <RouterProvider router={router}>
         <NavigationBar />
       </RouterProvider>
