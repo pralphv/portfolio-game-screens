@@ -14,6 +14,8 @@ import {
   DisplacementFilter,
   Assets,
 } from "pixi.js";
+import { useFontSize } from "./utils";
+
 extend({ Graphics, Sprite, Texture, Text, Container });
 
 const Stars = () => {
@@ -261,6 +263,7 @@ const ClickAnyButton = () => {
   const { app } = useApplication();
   const [visibleText, setVisibleText] = useState("");
   const fullText = "Click Anywhere";
+  const fontSize = useFontSize();
   useEffect(() => {
     async function load() {
       for (const text of fullText) {
@@ -276,6 +279,7 @@ const ClickAnyButton = () => {
     }
     load();
   }, []);
+  console.log({ fontSize });
 
   return (
     <>
@@ -287,7 +291,7 @@ const ClickAnyButton = () => {
         style={
           new TextStyle({
             fontFamily: "PixelOperator, monospace",
-            fontSize: 24,
+            fontSize: Math.min(fontSize * 0.5, 24),
             fill: "#F7F7F6",
           })
         }
@@ -500,7 +504,7 @@ const Home = () => {
           <pixiContainer x={shakeX}>
             <BrownOverlayFadeout />
             <Stars />
-            <Particles />
+            {/* <Particles /> */}
             <Title />
             <ClickAnyButtonDistortion />
             <ClickAnyButton />
