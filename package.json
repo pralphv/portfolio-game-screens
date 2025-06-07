@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "predeploy": "tsc -b && vite build",
+    "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

@@ -504,7 +504,7 @@ const Home = () => {
           <pixiContainer x={shakeX}>
             <BrownOverlayFadeout />
             <Stars />
-            {/* <Particles /> */}
+            <Particles />
             <Title />
             <ClickAnyButtonDistortion />
             <ClickAnyButton />
