@@ -4,18 +4,34 @@ import "./index.css";
 const NavigationBar = () => {
   return (
     <>
-      <nav>
-        <NavLink to="/about_me">About Me</NavLink>
-        <NavLink to="/experience">Experience</NavLink>
-        <NavLink to="/how_this_was_made">How this was made</NavLink>
-      </nav>
-      <div
+      <nav
+        className="nier-navbar"
         style={{
-          borderTop: "2px solid",
+          display: "flex",
+          gap: "1rem",
+          height: "8vh",
+          alignItems: "center",
         }}
       >
-        <div style={{ padding: "0 4rem" }}>
-          <div className="pattern" />
+        <NavLink to="/about_me">ABOUT ME</NavLink>
+        <NavLink to="/experience">EXPERIENCE</NavLink>
+        <NavLink to="/how_this_was_made">HOW THIS WAS MADE</NavLink>
+      </nav>
+      <div>
+        <div>
+          <div className="pattern top" />
+        </div>
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        <div>
+          <div className="pattern bottom" />
         </div>
       </div>
     </>
