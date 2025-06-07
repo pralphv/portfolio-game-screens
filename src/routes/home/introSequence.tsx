@@ -19,7 +19,7 @@ const textStyle = {
 };
 
 function GlitchText() {
-  const fontSize = useFontSize()
+  const fontSize = useFontSize();
   const { app } = useApplication();
 
   const [filters, setFilters] = useState<GlitchFilter[]>([]);
@@ -61,7 +61,7 @@ function GlitchText() {
         new TextStyle({
           ...textStyle,
           fill: "#F7F7F6",
-          fontSize
+          fontSize,
         })
       }
       scale={Math.random() < 0.5 ? 1 : -1}
@@ -131,7 +131,7 @@ const ThreeColoredText = ({
           new TextStyle({
             ...textStyle,
             fill: "#F7F7F6",
-            fontSize: fontSize || fontSize_ ,
+            fontSize: fontSize || fontSize_,
           })
         }
         tint={0xffffff}
@@ -299,7 +299,7 @@ const OldTvNoise = () => {
         x,
         Math.random() * app.screen.height * 0.3,
         1,
-        Math.random() * app.screen.height * 0.6
+        Math.random() * app.screen.height * 0.6,
       );
     }
 
@@ -326,7 +326,7 @@ function BrownOverlay() {
   const [alpha, setAlpha] = useState(0);
   useTick(() => {
     setAlpha(
-      (prev) => Math.min(0.1, prev + 0.003) - (Math.random() < 0.1 ? 0.005 : 0)
+      (prev) => Math.min(0.1, prev + 0.003) - (Math.random() < 0.1 ? 0.005 : 0),
     );
   });
 
@@ -367,14 +367,14 @@ const HorizontalLines = () => {
       setScanLines(
         scanLines.map((line) => {
           return { ...line, alpha: line.alpha / 2 };
-        })
+        }),
       );
     }, 100);
     const interval2 = setInterval(() => {
       setScanLines(
         scanLines.map((line) => {
           return { ...line, alpha: 0 };
-        })
+        }),
       );
     }, 100);
     const interval3 = setInterval(generateScanLines, 400);

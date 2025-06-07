@@ -279,7 +279,7 @@ const ClickAnyButton = () => {
     }
     load();
   }, []);
-  console.log({fontSize})
+  console.log({ fontSize });
 
   return (
     <>

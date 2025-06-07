@@ -166,9 +166,15 @@ const YSplit = ({
         y={y + yOffset}
         anchor={0.5}
         alpha={0.5}
-        style={createTextStyle({fontSize})}
+        style={createTextStyle({ fontSize })}
       />
-      <pixiText text={text} x={x} y={y} anchor={0.5} style={createTextStyle({fontSize})} />
+      <pixiText
+        text={text}
+        x={x}
+        y={y}
+        anchor={0.5}
+        style={createTextStyle({ fontSize })}
+      />
     </>
   );
 };
@@ -235,7 +241,7 @@ const Title = () => {
             blue: [1, 1],
             red: [1, 1],
             green: [1, 1],
-          })
+          }),
         );
 
         setTimeout(() => {
@@ -297,7 +303,7 @@ const Title = () => {
           y={y}
           anchor={0.5}
           filters={filters || []}
-          style={createTextStyle({fontSize})}
+          style={createTextStyle({ fontSize })}
         />
       )}
     </>
