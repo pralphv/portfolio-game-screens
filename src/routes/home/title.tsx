@@ -1,17 +1,31 @@
 import { extend, useApplication } from "@pixi/react";
 import { useState, useEffect } from "react";
-import { Graphics, Sprite, Texture, Container, TextStyle, Text } from "pixi.js";
+import {
+  Graphics,
+  Sprite,
+  Texture,
+  Container,
+  TextStyle,
+  Text,
+  type TextStyleOptions,
+} from "pixi.js";
 import { GlitchFilter } from "pixi-filters";
+import { useFontSize } from "./utils";
 extend({ Graphics, Sprite, Texture, Text, Container });
 
 const GLITCH_DURATION = 100;
 const MIN_INTERVAL = 0;
 const MAX_INTERVAL = 1500;
-const TEXT_STYLE = new TextStyle({
-  fill: 0xffffff,
-  fontSize: 80,
-  fontFamily: "Exo 2, serif",
-});
+
+function createTextStyle(style?: Partial<TextStyleOptions>) {
+  return new TextStyle({
+    fill: 0xffffff,
+    fontSize: 80,
+    fontFamily: "Exo 2, serif",
+    ...style,
+  });
+}
+
 const SEQUENCE = ["inverted", "ySplit", "xDisplace", "analyph"];
 
 const Analyph = ({
@@ -26,6 +40,7 @@ const Analyph = ({
   text: string;
 }) => {
   const [xOffset, setXOffset] = useState(10);
+  const fontSize = useFontSize();
   useEffect(() => {
     async function transition() {
       await new Promise((r) => setTimeout(r, 100));
@@ -41,19 +56,23 @@ const Analyph = ({
   }, []);
   return (
     <>
-      <pixiText text={text} x={x} y={y} anchor={0.5} style={TEXT_STYLE} />
+      <pixiText
+        text={text}
+        x={x}
+        y={y}
+        anchor={0.5}
+        style={createTextStyle({ fontSize })}
+      />
       <pixiText
         text={text}
         anchor={0.5}
         x={x - xOffset}
         y={y}
-        style={
-          new TextStyle({
-            fill: "#F7F7F6",
-            fontSize: 80,
-            fontFamily: "Exo 2, serif",
-          })
-        }
+        style={createTextStyle({
+          fontSize,
+          fill: "#F7F7F6",
+          fontFamily: "Exo 2, serif",
+        })}
         tint={0xff0000}
         blendMode={"screen"}
       />
@@ -62,13 +81,11 @@ const Analyph = ({
         anchor={0.5}
         x={x + xOffset}
         y={y}
-        style={
-          new TextStyle({
-            fill: "#F7F7F6",
-            fontSize: 80,
-            fontFamily: "Exo 2, serif",
-          })
-        }
+        style={createTextStyle({
+          fontSize,
+          fill: "#F7F7F6",
+          fontFamily: "Exo 2, serif",
+        })}
         tint={0x00ffff}
         blendMode={"screen"}
       />
@@ -110,7 +127,7 @@ const Inverted = ({
       y={y}
       anchor={0.5}
       scale={scale}
-      style={TEXT_STYLE}
+      style={createTextStyle()}
     />
   );
 };
@@ -127,6 +144,7 @@ const YSplit = ({
   text: string;
 }) => {
   const [yOffset, setYOffset] = useState(70);
+  const fontSize = useFontSize();
   useEffect(() => {
     async function transition() {
       await new Promise((r) => setTimeout(r, 100));
@@ -148,9 +166,9 @@ const YSplit = ({
         y={y + yOffset}
         anchor={0.5}
         alpha={0.5}
-        style={TEXT_STYLE}
+        style={createTextStyle({fontSize})}
       />
-      <pixiText text={text} x={x} y={y} anchor={0.5} style={TEXT_STYLE} />
+      <pixiText text={text} x={x} y={y} anchor={0.5} style={createTextStyle({fontSize})} />
     </>
   );
 };
@@ -188,7 +206,7 @@ const XDisplace = ({
       x={x + xOffset}
       y={y}
       anchor={0.5}
-      style={TEXT_STYLE}
+      style={createTextStyle()}
     />
   );
 };
@@ -199,6 +217,7 @@ const Title = () => {
   const { app } = useApplication();
   const x = app.screen.width / 2;
   const y = app.screen.height / 2.5;
+  const fontSize = useFontSize();
 
   useEffect(() => {
     if (i < SEQUENCE.length) {
@@ -278,7 +297,7 @@ const Title = () => {
           y={y}
           anchor={0.5}
           filters={filters || []}
-          style={TEXT_STYLE}
+          style={createTextStyle({fontSize})}
         />
       )}
     </>

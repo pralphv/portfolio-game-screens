@@ -9,11 +9,17 @@ import {
   Text,
   RenderTexture,
 } from "pixi.js";
+import { useFontSize } from "./utils";
 import { GlitchFilter } from "pixi-filters";
 extend({ Graphics, Sprite, Texture, Text, Container });
 
+const textStyle = {
+  fontFamily: "Roboto Mono, monospace",
+  letterSpacing: 8,
+};
 
 function GlitchText() {
+  const fontSize = useFontSize()
   const { app } = useApplication();
 
   const [filters, setFilters] = useState<GlitchFilter[]>([]);
@@ -55,6 +61,7 @@ function GlitchText() {
         new TextStyle({
           ...textStyle,
           fill: "#F7F7F6",
+          fontSize
         })
       }
       scale={Math.random() < 0.5 ? 1 : -1}
@@ -63,7 +70,7 @@ function GlitchText() {
   );
 }
 
-function DisplaceX({ children }: {children: React.ReactNode}) {
+function DisplaceX({ children }: { children: React.ReactNode }) {
   const [displacement, setDisplacement] = useState(0);
 
   useEffect(() => {
@@ -97,76 +104,75 @@ const createLines = (width: number, height: number) => {
   lineSprite.tint = 0x000000;
   return lineSprite;
 };
-const textStyle = {
-  fontFamily: "Roboto Mono, monospace",
-  fontSize: 60,
-  letterSpacing: 8,
-};
 
 const ThreeColoredText = ({
   text,
   x,
   y,
   scale = 1,
-  fontSize = 60,
+  fontSize,
 }: {
   text: string;
   x: number;
   y: number;
   scale?: number;
   fontSize?: number;
-}) => (
-  <>
-    <pixiText
-      text={text}
-      anchor={0.5}
-      x={x}
-      y={y}
-      style={
-        new TextStyle({
-          ...textStyle,
-          fill: "#F7F7F6",
-          fontSize,
-        })
-      }
-      tint={0xffffff}
-      scale={scale}
-    />
-    <pixiText
-      text={text}
-      anchor={0.5}
-      x={x - 3}
-      y={y}
-      style={
-        new TextStyle({
-          ...textStyle,
-          fill: "#F7F7F6",
-          fontSize,
-        })
-      }
-      tint={0xff0000}
-      blendMode={"screen"}
-      scale={scale}
-    />
+}) => {
+  const fontSize_ = useFontSize();
 
-    <pixiText
-      text={text}
-      anchor={0.5}
-      x={x + 3}
-      y={y}
-      style={
-        new TextStyle({
-          ...textStyle,
-          fill: "#F7F7F6",
-          fontSize,
-        })
-      }
-      tint={0x00ffff}
-      blendMode={"screen"}
-      scale={scale}
-    />
-  </>
-);
+  return (
+    <>
+      <pixiText
+        text={text}
+        anchor={0.5}
+        x={x}
+        y={y}
+        style={
+          new TextStyle({
+            ...textStyle,
+            fill: "#F7F7F6",
+            fontSize: fontSize || fontSize_ ,
+          })
+        }
+        tint={0xffffff}
+        scale={scale}
+      />
+      <pixiText
+        text={text}
+        anchor={0.5}
+        x={x - 3}
+        y={y}
+        style={
+          new TextStyle({
+            ...textStyle,
+            fill: "#F7F7F6",
+            fontSize: fontSize_ || fontSize,
+          })
+        }
+        tint={0xff0000}
+        blendMode={"screen"}
+        scale={scale}
+      />
+
+      <pixiText
+        text={text}
+        anchor={0.5}
+        x={x + 3}
+        y={y}
+        style={
+          new TextStyle({
+            ...textStyle,
+            fill: "#F7F7F6",
+            fontSize: fontSize_ || fontSize,
+          })
+        }
+        tint={0x00ffff}
+        blendMode={"screen"}
+        scale={scale}
+      />
+    </>
+  );
+};
 
 const AnaglyphText = ({ onComplete }: { onComplete: () => void }) => {
   const { app } = useApplication();
@@ -225,6 +231,7 @@ const InvertedText = ({
 };
 
 const RandomBigText = () => {
+  const fontSize = useFontSize();
   const { app } = useApplication();
   const [render, setRender] = useState(false);
   useEffect(() => {
@@ -249,7 +256,7 @@ const RandomBigText = () => {
         y={y}
         text="i hate lc"
         scale={Math.random() < 0.5 ? 1 : -1}
-        fontSize={80}
+        fontSize={fontSize * 1.5}
       />
     )
   );
