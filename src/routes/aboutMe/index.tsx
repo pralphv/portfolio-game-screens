@@ -1,4 +1,4 @@
 const AboutMe = () => {
-    return <p className="text-primary">about me</p>
-}
+  return <h1>About Me</h1>;
+};
 export default AboutMe;

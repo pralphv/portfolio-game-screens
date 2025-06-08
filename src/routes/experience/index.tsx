@@ -1,4 +1,4 @@
 const Experience = () => {
-    return <p>experience</p>
-}
+  return <h1>experience</h1>;
+};
 export default Experience;
