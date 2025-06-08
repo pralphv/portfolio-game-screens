@@ -1,10 +1,26 @@
+import { useState } from "react";
 import { NavLink } from "react-router";
+
 import "./index.css";
 
 const NavigationBar = () => {
+  const [activeLink, setActiveLink] = useState("");
+  const [leavingLink, setLeavingLink] = useState("");
+
+  const handleNavClick = (path: string) => {
+    if (activeLink && activeLink !== path) {
+      setLeavingLink(activeLink);
+      // Clear leaving state after animation
+      setTimeout(() => setLeavingLink(""), 600);
+    }
+    setActiveLink(path);
+  };
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div
+        style={{ display: "flex", alignItems: "center" }}
+        className="white-space"
+      >
         <div className="dividers" />
         <nav
           className="nier-navbar"
@@ -15,14 +31,19 @@ const NavigationBar = () => {
             alignItems: "center",
           }}
         >
-          <NavLink
-            to="/about_me"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            ABOUT ME
-          </NavLink>
-          <NavLink to="/experience">EXPERIENCE</NavLink>
-          <NavLink to="/how_this_was_made">HOW THIS WAS MADE</NavLink>
+          {["/about_me", "/experience", "/how_this_was_made"].map((route) => (
+            <NavLink
+              to={route}
+              key={route}
+              className={({ isActive }) => {
+                if (isActive) return "active";
+                if (leavingLink === route) return "leaving";
+              }}
+              onClick={() => handleNavClick(route)}
+            >
+              {route.split("/")[1].split("_").join(" ")}
+            </NavLink>
+          ))}
         </nav>
       </div>
 

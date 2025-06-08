@@ -15,7 +15,7 @@ import {
   Assets,
 } from "pixi.js";
 import { useFontSize } from "./utils";
-
+import { useTextTypingEffect } from "../../utils/hooks";
 extend({ Graphics, Sprite, Texture, Text, Container });
 
 const Stars = () => {
@@ -260,26 +260,9 @@ const DotLine = () => {
 };
 
 const ClickAnyButton = () => {
+  const visibleText = useTextTypingEffect("Click Anywhere");
   const { app } = useApplication();
-  const [visibleText, setVisibleText] = useState("");
-  const fullText = "Click Anywhere";
   const fontSize = useFontSize();
-  useEffect(() => {
-    async function load() {
-      for (const text of fullText) {
-        const randomAlphabet = String.fromCharCode(
-          65 + Math.floor(Math.random() * 26),
-        );
-        setVisibleText(
-          (prev) => prev.slice(0, prev.length - 1) + text + randomAlphabet,
-        );
-        await new Promise((r) => setTimeout(r, 60));
-      }
-      setVisibleText(fullText);
-    }
-    load();
-  }, []);
-  console.log({ fontSize });
 
   return (
     <>
@@ -516,7 +499,7 @@ const Home = () => {
         {startTransition && (
           <ScreenTransition
             onComplete={() => {
-              navigate("/about_me");
+              navigate("/about_me?from=home");
             }}
           />
         )}

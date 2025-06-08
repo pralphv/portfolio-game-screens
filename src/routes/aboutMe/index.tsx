@@ -1,4 +1,11 @@
+import NierPageHeader from "../../components/nierPageHeader";
+
+const TITLE = "About Me";
 const AboutMe = () => {
-  return <h1>About Me</h1>;
+  return (
+    <div className="white-space">
+      <NierPageHeader title={TITLE} />
+    </div>
+  );
 };
 export default AboutMe;

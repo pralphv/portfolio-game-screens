@@ -182,15 +182,15 @@
 }
 
 .nier-navbar {
-  animation: revealLeftToRight 0.5s ease-out forwards;
+  animation: revealLeftToRight 0.2s ease-out forwards;
   animation-delay: 500ms;
   clip-path: inset(0 100% 0 0);
 }
 
 .pattern.top {
-  animation: revealRightToLeft 0.3s ease-out forwards;
+  animation: revealRightToLeft 0.2s ease-out forwards;
 }
 .pattern.bottom {
-  animation: revealLeftToRight 0.3s ease-out forwards;
+  animation: revealLeftToRight 0.2s ease-out forwards;
   transform-origin: left;
 }
