@@ -18,10 +18,10 @@ const NavigationBar = () => {
   return (
     <>
       <div
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center", gap: "1em" }}
         className="white-space"
       >
-        <div className="dividers" />
+        <div className="dividers" style={{ height: "2em" }} />
         <nav
           className="nier-navbar"
           style={{
