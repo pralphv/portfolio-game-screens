@@ -31,7 +31,7 @@ const NavigationBar = () => {
             alignItems: "center",
           }}
         >
-          {["/about_me", "/experience", "/how_this_was_made"].map((route) => (
+          {["/about_me", "/experience", "/projects"].map((route) => (
             <NavLink
               to={route}
               key={route}
