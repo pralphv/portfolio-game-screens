@@ -1,6 +1,8 @@
 import { NavLink, useParams } from "react-router";
 import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
+import { clsx } from "clsx";
+import { useState } from "react";
 
 function createUrl(url: string, name: string) {
   return {
@@ -30,6 +32,52 @@ const RightPanel = ({
   );
 };
 
+const LeftPanel = () => {
+  const { section } = useParams();
+  const [activeSection, setActiveSection] = useState(section);
+  const [leavingSection, setLeavingSection] = useState("");
+
+  const handleNavClick = (path: string) => {
+    if (activeSection && activeSection !== path) {
+      setLeavingSection(activeSection);
+      // Clear leaving state after animation
+      setTimeout(() => setLeavingSection(""), 600);
+    }
+    setActiveSection(path);
+  };
+  return (
+    <nav
+      className="panel panel-box-shadow"
+      style={{ flex: "0 0 25%", height: "60vh" }}
+    >
+      <ul>
+        {[
+          createUrl("me", "Me"),
+          createUrl("this_page", "This page"),
+          createUrl("tech_stack", "Tech Stack"),
+          createUrl("am_i_a_weeb", "Am I a weeb"),
+          createUrl("how_this_was_made", "How this was made"),
+        ].map((obj) => (
+          <li
+            key={obj.url}
+            className={clsx(
+              section === obj.url && "bullet-point-active",
+              leavingSection === obj.url && "leaving",
+            )}
+          >
+            <div>
+              <div className={"bullet-point"} style={{ marginLeft: "0.5em" }} />
+              <NavLink to={obj.url} onClick={() => handleNavClick(obj.url)}>
+                {obj.name}
+              </NavLink>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
 const TITLE = "About Me";
 const AboutMe = () => {
   const ready = useDelayIfRefresh(500);
@@ -42,30 +90,7 @@ const AboutMe = () => {
           <div style={{ display: "flex", gap: "1em" }}>
             <div className="dividers" />
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
-              <nav
-                className="panel panel-box-shadow"
-                style={{ flex: "0 0 25%", height: "60vh" }}
-              >
-                <ul>
-                  {[
-                    createUrl("me", "Me"),
-                    createUrl("this_page", "This page"),
-                    createUrl("tech_stack", "Tech Stack"),
-                    createUrl("am_i_a_weeb", "Am I a weeb"),
-                    createUrl("how_this_was_made", "How this was made"),
-                  ].map((obj) => (
-                    <li key={obj.url}>
-                      <div>
-                        <div
-                          className="bullet-point"
-                          style={{ marginLeft: "0.5em" }}
-                        />
-                        <NavLink to={obj.url}>{obj.name}</NavLink>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <LeftPanel />
               <div style={{ flex: "1" }}>
                 {section === "me" && (
                   <RightPanel title="Me">

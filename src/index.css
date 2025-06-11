@@ -27,20 +27,25 @@
   }
 }
 
+@keyframes widthOut {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
 @keyframes leaveAnimation {
   0% {
-    /* Start from active state (flashing) */
     width: 100%;
     height: 200%;
-    /* animation: flash 2s infinite; */
   }
   30% {
-    /* Transition to hover state */
     width: 100%;
     height: 100%;
   }
   100% {
-    /* End at original state */
     width: 0%;
     height: 100%;
     opacity: 1;
@@ -246,7 +251,7 @@ html[data-theme="nier"] {
     position: relative;
     padding-top: 1em;
     padding-bottom: 1em;
-    padding-left: 1em;
+    padding-left: 0.5em;
     animation: fadeIn 0.2s ease-out forwards;
     opacity: 0;
 
@@ -325,6 +330,14 @@ html[data-theme="nier"] {
 
     &:hover::after {
       width: 100%;
+      animation: flash 2s infinite;
+    }
+
+    &.leaving::after {
+      animation: widthOut 0.3s ease-out forwards;
+      background-color: var(--color-text-base);
+      color: var(--color-background);
+      opacity: 0.8;
     }
   }
 
@@ -349,5 +362,19 @@ html[data-theme="nier"] {
     width: 1em;
     height: 1em;
     background-color: var(--color-text-base);
+  }
+
+  .bullet-point-active {
+    background-color: var(--color-text-base);
+    color: var(--color-background);
+    opacity: 0.8;
+
+    .bullet-point {
+      background-color: var(--color-background);
+    }
+  }
+  .panel li.bullet-point-active::before,
+  .panel li.bullet-point-active:hover::before {
+    opacity: 0;
   }
 }

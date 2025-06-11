@@ -17,6 +17,7 @@
     "@pixi/filter-glitch": "^5.1.1",
     "@pixi/react": "^8.0.0-beta.25",
     "@tailwindcss/vite": "^4.1.7",
+    "clsx": "^2.1.1",
     "pixi-filters": "^6.1.2",
     "pixi.js": "^8.2.6",
     "react": "^19.1.0",
