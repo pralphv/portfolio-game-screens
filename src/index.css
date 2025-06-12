@@ -16,18 +16,84 @@
   --color-border: #fed7aa; /* Peach border */
 }
 
+@keyframes flash {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes widthOut {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes leaveAnimation {
+  0% {
+    width: 100%;
+    height: 200%;
+  }
+  30% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 0%;
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes leaveBorderAnimation {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes growUp {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 /* Nier Theme - Overrides values when data-theme='nier' is applied */
 html[data-theme="nier"] {
   /* Colors */
   --color-primary: #838383; /* Example Nier primary */
-  --color-secondary: #e2e8f0; /* Example Nier secondary */
+  --color-secondary: #aca894; /* Example Nier secondary */
 
-  --color-text-base: #4d493e; /* $color from your snippet */
+  --color-text-base: #464132; /* $color from your snippet */
   --color-text-muted: #718096; /* Example muted text */
 
   --color-background: #c8c2aa; /* $bgColor from your snippet */
   --color-surface: #f8f8f0; /* A slightly lighter surface if needed */
-  --color-border: #4d493e; /* Border color matching $color */
+  --color-border: 77, 73, 62; /* Border color matching $color */
 
   /* Define the color used for the grid lines as an RGB variable */
   --color-grid-line-rgb: 255 0 0; /* Black for rgba(0,0,0,.07) */
@@ -41,7 +107,8 @@ html[data-theme="nier"] {
   body {
     background-color: var(--color-background);
     background-size: 4px 4px;
-    background-image: linear-gradient(
+    background-image:
+      linear-gradient(
         90deg,
         transparent,
         transparent 3px,
@@ -50,8 +117,9 @@ html[data-theme="nier"] {
       linear-gradient(transparent, transparent 3px, rgba(0, 0, 0, 0.07) 4px);
     background-repeat: repeat; /* Crucial for grids! Ensure the pattern tiles */
     /* Inner box shadow */
-    box-shadow: inset 0 0 150px rgba(var(--color-text-base-rgb), 0.4),
-      inset 0 0 150px rgba(var(--color-text-base-rgb), 0.3);
+    box-shadow:
+      inset 0 0 150px rgba(var(--color-border), 0.2),
+      inset 0 0 150px rgba(var(--color-border), 0.2);
 
     /* Other body styles */
     color: var(--color-text-base);
@@ -61,6 +129,292 @@ html[data-theme="nier"] {
     min-height: 100vh; /* Important for seeing the background fully */
     display: flex;
     flex-direction: column;
+    letter-spacing: 0.05rem;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+    text-shadow: 0.3rem 0.3rem 0 rgba(77, 73, 62, 0.3);
+    font-size: 2em;
+  }
+
+  h2 {
     letter-spacing: 0.1rem;
+  }
+
+  a {
+    background-color: var(--color-secondary);
+    text-transform: uppercase;
+    padding: 0.1rem 1rem;
+    position: relative;
+    z-index: 1;
+    transition: color 0.15s ease;
+    letter-spacing: 0.1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: 0px;
+      bottom: -3px;
+      border-top: 1px solid var(--color-text-base);
+      border-bottom: 1px solid var(--color-text-base);
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 0%;
+      height: 100%;
+      background-color: var(--color-text-base);
+      transition: width 0.15s ease;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: var(--color-background);
+    }
+
+    &:hover::after {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover::before {
+      opacity: 100%;
+    }
+
+    &.active {
+      color: var(--color-background);
+    }
+
+    &.active::before {
+      opacity: 0;
+    }
+
+    &.active::after {
+      width: 100%;
+      height: 200%;
+      animation: flash 2s infinite;
+    }
+
+    &.leaving {
+      color: var(--color-background);
+    }
+    &.leaving::after {
+      animation: leaveAnimation 0.3s ease-out forwards;
+    }
+
+    &.leaving::before {
+      animation: leaveBorderAnimation 0.3s ease-out forwards;
+    }
+  }
+
+  .dividers {
+    position: relative;
+    width: 10px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background-color: rgba(var(--color-border), 0.3);
+      transform-origin: center;
+      animation: growUp 0.3s ease-out forwards;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: rgba(var(--color-border), 0.3);
+      transform-origin: center;
+      animation: growUp 0.3s ease-out forwards;
+    }
+  }
+
+  .white-space {
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+  .panel {
+    background-color: #cac3ab;
+    position: relative;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    animation: fadeIn 0.2s ease-out forwards;
+    opacity: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      left: 2%;
+      border-top: 1px solid var(--color-secondary);
+      border-bottom: 1px solid var(--color-secondary);
+      width: 96%;
+      pointer-events: none;
+    }
+  }
+  .panel-box-shadow {
+    box-shadow: 2px 2px 0px #a29c85;
+  }
+
+  .panel a {
+    all: unset;
+    &::before {
+      all: unset;
+    }
+    &::after {
+      all: unset;
+    }
+    cursor: pointer;
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: color 0.15s ease;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .panel li {
+    position: relative;
+    padding-left: 2em;
+
+    &:hover {
+      a {
+        color: var(--color-background);
+      }
+      .bullet-point {
+        background-color: var(--color-background);
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: 0px;
+      bottom: -3px;
+      border-top: 1px solid var(--color-text-base);
+      border-bottom: 1px solid var(--color-text-base);
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    &:hover::before {
+      opacity: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 0%;
+      height: 100%;
+      background-color: var(--color-text-base);
+      transition: width 0.15s ease;
+      z-index: -1;
+    }
+
+    &:hover::after {
+      width: 100%;
+      animation: flash 2s infinite;
+    }
+
+    &.leaving::after {
+      animation: widthOut 0.3s ease-out forwards;
+      background-color: var(--color-text-base);
+      color: var(--color-background);
+      opacity: 0.8;
+    }
+  }
+
+  .panel-header {
+    color: var(--color-background);
+    background-color: var(--color-text-base);
+    padding-left: 2em;
+    position: relative;
+    animation: fadeIn 0.2s ease-out forwards;
+
+    .bullet-point {
+      background-color: var(--color-background);
+    }
+  }
+
+  .bullet-point {
+    content: "";
+    position: absolute;
+    left: 0em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1em;
+    height: 1em;
+    background-color: var(--color-text-base);
+  }
+
+  .bullet-point-active {
+    background-color: var(--color-text-base);
+    color: var(--color-background);
+    opacity: 0.8;
+
+    .bullet-point {
+      background-color: var(--color-background);
+    }
+  }
+  .panel li.bullet-point-active::before,
+  .panel li.bullet-point-active:hover::before {
+    opacity: 0;
+  }
+
+  .diamond-indicator {
+    position: absolute;
+    width: 1.3em;
+    height: 0.7em;
+    background-color: var(--color-text-base);
+    clip-path: polygon(0% 50%, 25% 0%, 100% 50%, 25% 100%);
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fadeIn 0.2s ease-out forwards;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      width: 0.12em;
+      height: 0.12em;
+      background-color: var(--color-background);
+      border-radius: 50%;
+    }
+  }
+  .diamond-indicator.active {
+    background-color: var(--color-background);
+  }
+  .diamond-dot {
+    animation: fadeIn 0.2s ease-out forwards;
+    position: absolute;
+    width: 0.13em;
+    height: 0.13em;
+    background-color: var(--color-text-base);
+    border-radius: 50%;
   }
 }
