@@ -129,7 +129,7 @@ html[data-theme="nier"] {
     min-height: 100vh; /* Important for seeing the background fully */
     display: flex;
     flex-direction: column;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
   }
 
   h1 {
@@ -140,6 +140,10 @@ html[data-theme="nier"] {
     font-size: 2em;
   }
 
+  h2 {
+    letter-spacing: 0.1rem;
+  }
+
   a {
     background-color: var(--color-secondary);
     text-transform: uppercase;
@@ -147,6 +151,7 @@ html[data-theme="nier"] {
     position: relative;
     z-index: 1;
     transition: color 0.15s ease;
+    letter-spacing: 0.1rem;
 
     &::before {
       content: "";
