@@ -66,7 +66,7 @@ const NavigationBar = () => {
                   }}
                 </NavLink>
               </div>
-            )
+            ),
           )}
         </nav>
       </div>

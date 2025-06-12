@@ -268,7 +268,7 @@ html[data-theme="nier"] {
       border-top: 1px solid var(--color-secondary);
       border-bottom: 1px solid var(--color-secondary);
       width: 96%;
-      pointer-events: none
+      pointer-events: none;
     }
   }
   .panel-box-shadow {

@@ -130,7 +130,7 @@ const LeftPanel = () => {
   const { section } = useParams();
   const [activeSection, setActiveSection] = useState(section);
   const [leavingSection, setLeavingSection] = useState("");
-const [hoveredSection, setHoveredSection] = useState("");
+  const [hoveredSection, setHoveredSection] = useState("");
   const handleNavClick = (path: string) => {
     if (activeSection && activeSection !== path) {
       setLeavingSection(activeSection);
@@ -157,7 +157,7 @@ const [hoveredSection, setHoveredSection] = useState("");
             key={obj.url}
             className={clsx(
               section === obj.url && "bullet-point-active",
-              leavingSection === obj.url && "leaving"
+              leavingSection === obj.url && "leaving",
             )}
             onMouseEnter={() => setHoveredSection(obj.url)}
             onMouseLeave={() => setHoveredSection("")}
