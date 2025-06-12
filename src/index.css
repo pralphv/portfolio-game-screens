@@ -172,7 +172,7 @@ html[data-theme="nier"] {
       left: 0px;
       top: 0px;
       width: 0%;
-      height: 0%;
+      height: 100%;
       background-color: var(--color-text-base);
       transition: width 0.15s ease;
       z-index: -1;
@@ -256,7 +256,6 @@ html[data-theme="nier"] {
     position: relative;
     padding-top: 1em;
     padding-bottom: 1em;
-    padding-left: 0.5em;
     animation: fadeIn 0.2s ease-out forwards;
     opacity: 0;
 
@@ -269,6 +268,7 @@ html[data-theme="nier"] {
       border-top: 1px solid var(--color-secondary);
       border-bottom: 1px solid var(--color-secondary);
       width: 96%;
+      pointer-events: none
     }
   }
   .panel-box-shadow {
@@ -381,5 +381,40 @@ html[data-theme="nier"] {
   .panel li.bullet-point-active::before,
   .panel li.bullet-point-active:hover::before {
     opacity: 0;
+  }
+
+  .diamond-indicator {
+    position: absolute;
+    width: 1.3em;
+    height: 0.7em;
+    background-color: var(--color-text-base);
+    clip-path: polygon(0% 50%, 25% 0%, 100% 50%, 25% 100%);
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fadeIn 0.2s ease-out forwards;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      width: 0.12em;
+      height: 0.12em;
+      background-color: var(--color-background);
+      border-radius: 50%;
+    }
+  }
+  .diamond-indicator.active {
+    background-color: var(--color-background);
+  }
+  .diamond-dot {
+    animation: fadeIn 0.2s ease-out forwards;
+    position: absolute;
+    width: 0.13em;
+    height: 0.13em;
+    background-color: var(--color-text-base);
+    border-radius: 50%;
   }
 }

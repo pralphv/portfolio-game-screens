@@ -30,6 +30,8 @@ const router = createBrowserRouter(
         },
         { path: "/experience", element: <Experience /> },
         { path: "/how_this_was_made", element: <HowThisWasMade /> },
+        { path: "/projects", element: <HowThisWasMade /> },
+        { path: "/thoughts", element: <HowThisWasMade /> },
       ],
     },
   ],

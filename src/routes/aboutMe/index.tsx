@@ -3,6 +3,7 @@ import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
 import { clsx } from "clsx";
 import { useState } from "react";
+import DiamondIndicator from "../../components/diamondIndicator";
 
 function createUrl(url: string, name: string) {
   return {
@@ -22,11 +23,14 @@ const RightPanel = ({
   return (
     ready && (
       <>
-        <div className="panel-header">
-          <div className="bullet-point" style={{ marginLeft: "0.5em" }} />
-          <h2>{title}</h2>
+        <div style={{ position: "relative" }}>
+          <DiamondIndicator />
+          <div className="panel-header">
+            <div className="bullet-point" style={{ marginLeft: "0.5em" }} />
+            <h2>{title}</h2>
+          </div>
         </div>
-        <div className="panel" style={{ height: "56vh" }}>
+        <div className="panel" style={{ height: "61vh", paddingLeft: "0.5em" }}>
           {children}
         </div>
       </>
@@ -48,10 +52,10 @@ const Me = () => (
 const ThisPage = () => (
   <RightPanel title="This Page">
     <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-      <p>I want to recreate cool screens from games.</p>
+      <p>I want to recreate cool game screens.</p>
       <p>
         Currently this is NieR: Automata's title screen and pause screen.
-        Eventually I want to recreate more game screen. Like Persona's.
+        Eventually I want to recreate more. Like Persona's.
       </p>
       <p>Ultimately, my goal is to learn animations and GSAP.</p>
     </div>
@@ -87,14 +91,14 @@ const TechStack = () => (
 const AmIaWeeb = () => (
   <RightPanel title="Am I a weeb">
     <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-      <p>No I'm not. I just happen to have watched probably over 200 anime.</p>
+      <p>No I'm not. I just happen to have watched probably over 300 anime.</p>
       <p>And no I'm not learning Japanese because of anime.</p>
     </div>
   </RightPanel>
 );
 
 const HowThisWasMade = () => (
-  <RightPanel title="How this was made">
+  <RightPanel title="How it's made">
     <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
       <p>Landing page: @pixi/react</p>
       <p>
@@ -102,16 +106,19 @@ const HowThisWasMade = () => (
         SEO.
       </p>
       <p>
-        Got some css started from{" "}
+        Got some css started by copying{" "}
         <a
           href="https://codepen.io/levise/pen/vMzEwr"
           style={{ display: "inline", padding: 0, fontWeight: 600 }}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           this codepen
         </a>
+        . Thank you whoever wrote this.
       </p>
       <p>
-        Don't bother checking the code because its a shithole. I did not intend
+        Don't bother checking my code because its a shithole. I did not intend
         it to be maintanable. I just coded something out quickly because I have
         other chores to do. I don't code like this at work I promise.
       </p>
@@ -123,7 +130,7 @@ const LeftPanel = () => {
   const { section } = useParams();
   const [activeSection, setActiveSection] = useState(section);
   const [leavingSection, setLeavingSection] = useState("");
-
+const [hoveredSection, setHoveredSection] = useState("");
   const handleNavClick = (path: string) => {
     if (activeSection && activeSection !== path) {
       setLeavingSection(activeSection);
@@ -135,7 +142,7 @@ const LeftPanel = () => {
   return (
     <nav
       className="panel panel-box-shadow"
-      style={{ flex: "0 0 25%", height: "60vh" }}
+      style={{ flex: "0 0 25%", height: "65vh" }}
     >
       <ul>
         {[
@@ -143,17 +150,21 @@ const LeftPanel = () => {
           createUrl("this_page", "This page"),
           createUrl("tech_stack", "Tech Stack"),
           createUrl("am_i_a_weeb", "Am I a weeb"),
-          createUrl("how_this_was_made", "How this was made"),
+          createUrl("how_its_made", "How it's made"),
           createUrl("contact", "Contact"),
         ].map((obj) => (
           <li
             key={obj.url}
             className={clsx(
               section === obj.url && "bullet-point-active",
-              leavingSection === obj.url && "leaving",
+              leavingSection === obj.url && "leaving"
             )}
+            onMouseEnter={() => setHoveredSection(obj.url)}
+            onMouseLeave={() => setHoveredSection("")}
           >
             <div>
+              {section === obj.url && <DiamondIndicator active />}
+              {hoveredSection === obj.url && <DiamondIndicator />}
               <div className={"bullet-point"} style={{ marginLeft: "0.5em" }} />
               <NavLink to={obj.url} onClick={() => handleNavClick(obj.url)}>
                 {obj.name}
@@ -168,12 +179,18 @@ const LeftPanel = () => {
 
 const Contact = () => (
   <RightPanel title="Contact">
-    <a href="mailto:pralphv321@gmail.com" style={{ fontWeight: 600 }}>
+    <a
+      href="mailto:pralphv321@gmail.com"
+      style={{ fontWeight: 600 }}
+      rel="noopener noreferrer"
+    >
       pralphv321@gmail.com
     </a>
     <a
       href="https://www.linkedin.com/in/ralph-vincent-o-perez-16b378122"
       style={{ fontWeight: 600 }}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       LinkedIn
     </a>
@@ -187,7 +204,7 @@ const AboutMe = () => {
   return (
     ready && (
       <div className="white-space">
-        <div style={{ display: "flex", gap: "2em", flexDirection: "column" }}>
+        <div style={{ display: "flex", gap: "1.5em", flexDirection: "column" }}>
           <NierPageHeader title={TITLE} />
           <div style={{ display: "flex", gap: "1em" }}>
             <div className="dividers" />
