@@ -127,7 +127,7 @@ const HowThisWasMade = () => (
 );
 
 const LeftPanel = () => {
-  const { section } = useParams();
+  let { section } = useParams();
   const [activeSection, setActiveSection] = useState(section);
   const [leavingSection, setLeavingSection] = useState("");
   const [hoveredSection, setHoveredSection] = useState("");
@@ -139,6 +139,7 @@ const LeftPanel = () => {
     }
     setActiveSection(path);
   };
+  section = `/about_me/${section}`
   return (
     <nav
       className="panel panel-box-shadow"
@@ -146,12 +147,12 @@ const LeftPanel = () => {
     >
       <ul>
         {[
-          createUrl("me", "Me"),
-          createUrl("this_page", "This page"),
-          createUrl("tech_stack", "Tech Stack"),
-          createUrl("am_i_a_weeb", "Am I a weeb"),
-          createUrl("how_its_made", "How it's made"),
-          createUrl("contact", "Contact"),
+          createUrl("/about_me/me", "Me"),
+          createUrl("/about_me/this_page", "This page"),
+          createUrl("/about_me/tech_stack", "Tech Stack"),
+          createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
+          createUrl("/about_me/how_its_made", "How it's made"),
+          createUrl("/about_me/contact", "Contact"),
         ].map((obj) => (
           <li
             key={obj.url}

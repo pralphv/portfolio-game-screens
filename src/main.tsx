@@ -1,44 +1,12 @@
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { HashRouter, Routes, Route } from "react-router";
 import AboutMe from "./routes/aboutMe";
 import Experience from "./routes/experience";
 import Home from "./routes/home";
 import HowThisWasMade from "./routes/howThisWasMade";
-import NavigationBar from "./components/navigationBar";
 import Layout from "./components/layout";
-import { Outlet } from "react-router";
-
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <Outlet />,
-      children: [
-        { index: true, element: <Home /> }, // index route for "/"
-      ],
-    },
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/about_me",
-          element: <AboutMe />,
-          children: [{ path: ":section", element: null }],
-        },
-        { path: "/experience", element: <Experience /> },
-        { path: "/how_this_was_made", element: <HowThisWasMade /> },
-        { path: "/projects", element: <HowThisWasMade /> },
-        { path: "/thoughts", element: <HowThisWasMade /> },
-      ],
-    },
-  ],
-  {
-    basename: "/portfolio-game-screens",
-  },
-);
 
 const Root = () => {
   useEffect(() => {
@@ -47,10 +15,22 @@ const Root = () => {
   }, []);
   return (
     <div className="">
-      {/* @ts-ignore */}
-      <RouterProvider router={router}>
-        <NavigationBar />
-      </RouterProvider>
+      <HashRouter>
+        <Routes>
+          {/* Home route without layout */}
+          <Route path="/" element={<Home />} />
+
+          {/* Routes with layout */}
+          <Route element={<Layout />}>
+            <Route path="/about_me" element={<AboutMe />} />
+            <Route path="/about_me/:section" element={<AboutMe />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/how_this_was_made" element={<HowThisWasMade />} />
+            <Route path="/projects" element={<HowThisWasMade />} />
+            <Route path="/thoughts" element={<HowThisWasMade />} />
+          </Route>
+        </Routes>
+      </HashRouter>
     </div>
   );
 };
@@ -58,5 +38,5 @@ const Root = () => {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Root />
-  </StrictMode>,
+  </StrictMode>
 );
