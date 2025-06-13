@@ -499,7 +499,7 @@ const Home = () => {
         {startTransition && (
           <ScreenTransition
             onComplete={() => {
-              navigate("/about_me?from=home");
+              navigate("/about_me");
             }}
           />
         )}
