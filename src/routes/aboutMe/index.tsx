@@ -4,6 +4,7 @@ import { useDelayIfRefresh } from "../../utils/hooks";
 import { clsx } from "clsx";
 import { useState } from "react";
 import DiamondIndicator from "../../components/diamondIndicator";
+import { useScreenWidth } from "../../utils/hooks";
 
 function createUrl(url: string, name: string) {
   return {
@@ -126,7 +127,7 @@ const HowThisWasMade = () => (
   </RightPanel>
 );
 
-const LeftPanel = () => {
+const LeftPanel = ({ smallScreen = false }: { smallScreen: boolean }) => {
   let { section } = useParams();
   const [activeSection, setActiveSection] = useState(section);
   const [leavingSection, setLeavingSection] = useState("");
@@ -139,21 +140,22 @@ const LeftPanel = () => {
     }
     setActiveSection(path);
   };
-  section = `/about_me/${section}`
+  section = `/about_me/${section}`;
+  const subContent = [
+    createUrl("/about_me/me", "Me"),
+    createUrl("/about_me/this_page", "This page"),
+    createUrl("/about_me/tech_stack", "Tech Stack"),
+    createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
+    createUrl("/about_me/how_its_made", "How it's made"),
+    createUrl("/about_me/contact", "Contact"),
+  ];
   return (
     <nav
       className="panel panel-box-shadow"
-      style={{ flex: "0 0 25%", height: "65vh" }}
+      style={{ flex: smallScreen ? "1" : "0 0 25%", height: "65vh" }}
     >
       <ul>
-        {[
-          createUrl("/about_me/me", "Me"),
-          createUrl("/about_me/this_page", "This page"),
-          createUrl("/about_me/tech_stack", "Tech Stack"),
-          createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
-          createUrl("/about_me/how_its_made", "How it's made"),
-          createUrl("/about_me/contact", "Contact"),
-        ].map((obj) => (
+        {subContent.map((obj) => (
           <li
             key={obj.url}
             className={clsx(
@@ -202,23 +204,28 @@ const TITLE = "About Me";
 const AboutMe = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
+  const { isSmallScreen } = useScreenWidth();
   return (
     ready && (
       <div className="white-space">
         <div style={{ display: "flex", gap: "1.5em", flexDirection: "column" }}>
           <NierPageHeader title={TITLE} />
           <div style={{ display: "flex", gap: "1em" }}>
-            <div className="dividers" />
+            {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
-              <LeftPanel />
-              <div style={{ flex: "1" }}>
-                {section === "me" && <Me />}
-                {section === "this_page" && <ThisPage />}
-                {section === "tech_stack" && <TechStack />}
-                {section === "am_i_a_weeb" && <AmIaWeeb />}
-                {section === "how_this_was_made" && <HowThisWasMade />}
-                {section === "contact" && <Contact />}
-              </div>
+              {(!isSmallScreen || !section) && (
+                <LeftPanel smallScreen={isSmallScreen} />
+              )}
+              {section && (
+                <div style={{ flex: "1" }}>
+                  {section === "me" && <Me />}
+                  {section === "this_page" && <ThisPage />}
+                  {section === "tech_stack" && <TechStack />}
+                  {section === "am_i_a_weeb" && <AmIaWeeb />}
+                  {section === "how_this_was_made" && <HowThisWasMade />}
+                  {section === "contact" && <Contact />}
+                </div>
+              )}
             </div>
           </div>
         </div>

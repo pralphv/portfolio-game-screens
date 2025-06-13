@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import DiamondIndicator from "../../components/diamondIndicator";
+import { useScreenWidth } from "../../utils/hooks";
+import { clsx } from "clsx";
 
 import "./index.css";
 
@@ -8,7 +10,7 @@ const NavigationBar = () => {
   const [activeLink, setActiveLink] = useState("");
   const [leavingLink, setLeavingLink] = useState("");
   const [hoveringItem, setHoveringItem] = useState("");
-
+  const { isSmallScreen } = useScreenWidth();
   const handleNavClick = (path: string) => {
     if (activeLink && activeLink !== path) {
       setLeavingLink(activeLink);
@@ -21,12 +23,17 @@ const NavigationBar = () => {
     <>
       <div
         style={{ display: "flex", alignItems: "center", gap: "1em" }}
-        className="white-space"
+        className={clsx(!isSmallScreen, "white-space")}
       >
-        <div className="dividers" style={{ height: "2em" }} />
+        {!isSmallScreen && (
+          <div className="dividers" style={{ height: "2em" }} />
+        )}
         <nav
           className="nier-navbar"
           style={{
+            overflowX: isSmallScreen ? "scroll" : undefined,
+            overflowY: "hidden",
+            whiteSpace: "nowrap",
             display: "flex",
             gap: "1rem",
             height: "8vh",
@@ -70,17 +77,6 @@ const NavigationBar = () => {
           )}
         </nav>
       </div>
-
-      <div className="pattern top" />
-      <div
-        className="pattern bottom"
-        style={{
-          position: "fixed",
-          bottom: "2em",
-          left: 0,
-          right: 0,
-        }}
-      />
     </>
   );
 };
