@@ -185,6 +185,21 @@
   animation: revealLeftToRight 0.2s ease-out forwards;
   animation-delay: 500ms;
   clip-path: inset(0 100% 0 0);
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    height: 5px;
+  }
 }
 
 .pattern.top {

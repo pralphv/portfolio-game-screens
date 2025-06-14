@@ -144,6 +144,10 @@ html[data-theme="nier"] {
     letter-spacing: 0.1rem;
   }
 
+  p {
+    font-size: 14px;
+  }
+
   a {
     background-color: var(--color-secondary);
     text-transform: uppercase;
