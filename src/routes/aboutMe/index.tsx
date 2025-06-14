@@ -20,18 +20,27 @@ const RightPanel = ({
   title: string;
   children: React.ReactNode;
 }) => {
+  const { isSmallScreen } = useScreenWidth();
   const ready = useDelayIfRefresh(500);
   return (
     ready && (
       <>
-        <div style={{ position: "relative" }}>
+        <div
+          style={{ position: "relative", marginTop: isSmallScreen ? "1em" : 0 }}
+        >
           <DiamondIndicator />
           <div className="panel-header">
             <div className="bullet-point" style={{ marginLeft: "0.5em" }} />
             <h2>{title}</h2>
           </div>
         </div>
-        <div className="panel" style={{ height: "61vh", paddingLeft: "0.5em" }}>
+        <div
+          className="panel"
+          style={{
+            height: isSmallScreen ? "65vh" : "61vh",
+            paddingLeft: "0.5em",
+          }}
+        >
           {children}
         </div>
       </>
@@ -41,12 +50,14 @@ const RightPanel = ({
 
 const Me = () => (
   <RightPanel title="Me">
-    <p>
-      I'm your typical dev doing mundane tasks on the job. There's not as much
-      cool things to do when you're in corporate. So here I am coding something
-      probably no one will see, but I'm doing it anyways because its fun and I
-      get to learn something that is not Leetcode.
-    </p>
+    <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+      <p>I'm your typical dev doing mundane tasks on the job.</p>
+      <p>
+        There's not as much cool things to do when you're in corporate. So here
+        I am coding something probably no one will see, but I'm doing it anyways
+        because its fun and I get to learn something that is not Leetcode.
+      </p>
+    </div>
   </RightPanel>
 );
 
@@ -208,8 +219,8 @@ const AboutMe = () => {
   return (
     ready && (
       <div className="white-space">
-        <div style={{ display: "flex", gap: "1.5em", flexDirection: "column" }}>
-          <NierPageHeader title={TITLE} />
+        <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+          {!(isSmallScreen && section) && <NierPageHeader title={TITLE} />}
           <div style={{ display: "flex", gap: "1em" }}>
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
