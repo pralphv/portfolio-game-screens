@@ -14,6 +14,11 @@ const Me = () => (
         I am coding something probably no one will see, but I'm doing it anyways
         because its fun and I get to learn something that is not Leetcode.
       </p>
+      <p>
+        Sadly self-taught. Graduated with an accounting & finance major. I have
+        this random ass CFA level 1.
+      </p>
+      <p>Probably will stay full-stack for the rest of my life.</p>
     </div>
   </RightPanel>
 );
@@ -149,7 +154,7 @@ const AboutMe = () => {
                   {section === "this_page" && <ThisPage />}
                   {section === "tech_stack" && <TechStack />}
                   {section === "am_i_a_weeb" && <AmIaWeeb />}
-                  {section === "how_this_was_made" && <HowThisWasMade />}
+                  {section === "how_its_made" && <HowThisWasMade />}
                   {section === "contact" && <Contact />}
                 </div>
               )}

@@ -47,10 +47,29 @@ const GraphQl = () => (
     </div>
   </RightPanel>
 );
+
 const SystemDesign = () => (
   <RightPanel title="System Design">
     <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
       <p>System design interviews are just as grindable as Leetcode.</p>
+    </div>
+  </RightPanel>
+);
+
+const SelfTaught = () => (
+  <RightPanel title="Self Taught">
+    <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+      <p>People should stfu about self teaching.</p>
+      <p>
+        You need a CS degree. I was lucky to get my foot in the industry before
+        it essentially closed. If I graduated a few years later, I'd be so
+        screwed.
+      </p>
+      <p>
+        And it's not only learning to code. You need freaking Leetcode. Without
+        CS fundamentals, it's going to be so much harder to get to a decent
+        level to pass interviews.
+      </p>
     </div>
   </RightPanel>
 );
@@ -64,6 +83,7 @@ const HotTakes = () => {
     createUrl("/hot_takes/graphql", "GraphQL"),
     createUrl("/hot_takes/leetcode", "Leetcode"),
     createUrl("/hot_takes/system_design", "System Design"),
+    createUrl("/hot_takes/self_taught", "Self Taught"),
   ];
   return (
     ready && (
@@ -86,6 +106,7 @@ const HotTakes = () => {
                   {section === "graphql" && <GraphQl />}
                   {section === "leetcode" && <Leetcode />}
                   {section === "system_design" && <SystemDesign />}
+                  {section === "self_taught" && <SelfTaught />}
                 </div>
               )}
             </div>
