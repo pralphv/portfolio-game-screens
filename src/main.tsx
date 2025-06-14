@@ -5,8 +5,9 @@ import { HashRouter, Routes, Route } from "react-router";
 import AboutMe from "./routes/aboutMe";
 import Experience from "./routes/experience";
 import Home from "./routes/home";
-import HowThisWasMade from "./routes/howThisWasMade";
+import HotTakes from "./routes/hotTakes";
 import Layout from "./components/layout";
+import Projects from "./routes/projects";
 
 const Root = () => {
   useEffect(() => {
@@ -25,9 +26,11 @@ const Root = () => {
             <Route path="/about_me" element={<AboutMe />} />
             <Route path="/about_me/:section" element={<AboutMe />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/how_this_was_made" element={<HowThisWasMade />} />
-            <Route path="/projects" element={<HowThisWasMade />} />
-            <Route path="/thoughts" element={<HowThisWasMade />} />
+            <Route path="/experience/:section" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:section" element={<Projects />} />
+            <Route path="/hot_takes" element={<HotTakes />} />
+            <Route path="/hot_takes/:section" element={<HotTakes />} />
           </Route>
         </Routes>
       </HashRouter>

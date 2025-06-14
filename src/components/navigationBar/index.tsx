@@ -42,7 +42,7 @@ const NavigationBar = () => {
             paddingLeft: "2em", // Keep the padding
           }}
         >
-          {["/about_me", "/experience", "/projects", "/thoughts"].map(
+          {["/about_me", "/experience", "/hot_takes", "/projects"].map(
             (route) => (
               <div
                 key={route}
