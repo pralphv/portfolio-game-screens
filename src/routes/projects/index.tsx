@@ -23,10 +23,7 @@ const Projects = () => {
                   urlPrefix="hot_takes"
                 />
               )}
-              {section && (
-                <div style={{ flex: "1" }}>
-                </div>
-              )}
+              {section && <div style={{ flex: "1" }}></div>}
             </div>
           </div>
         </div>

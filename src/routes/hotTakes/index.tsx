@@ -85,7 +85,7 @@ const HotTakes = () => {
                   {section === "microservices" && <Microservices />}
                   {section === "graphql" && <GraphQl />}
                   {section === "leetcode" && <Leetcode />}
-                  {section === "system_design" && <SystemDesign/>}
+                  {section === "system_design" && <SystemDesign />}
                 </div>
               )}
             </div>

@@ -2,7 +2,6 @@ import { useDelayIfRefresh } from "../../utils/hooks";
 import DiamondIndicator from "../../components/diamondIndicator";
 import { useScreenWidth } from "../../utils/hooks";
 
-
 const RightPanel = ({
   title,
   children,

@@ -2,9 +2,8 @@ import { useParams } from "react-router";
 import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
 import RightPanel from "../../components/rightPanel";
-import LeftPanel, {createUrl} from "../../components/leftPanel";
+import LeftPanel, { createUrl } from "../../components/leftPanel";
 import { useScreenWidth } from "../../utils/hooks";
-
 
 const Me = () => (
   <RightPanel title="Me">
@@ -121,7 +120,7 @@ const AboutMe = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
   const { isSmallScreen } = useScreenWidth();
-    const subContent = [
+  const subContent = [
     createUrl("/about_me/me", "Me"),
     createUrl("/about_me/this_page", "This page"),
     createUrl("/about_me/tech_stack", "Tech Stack"),
@@ -138,7 +137,11 @@ const AboutMe = () => {
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
               {(!isSmallScreen || !section) && (
-                <LeftPanel smallScreen={isSmallScreen} subContent={subContent} urlPrefix="about_me" />
+                <LeftPanel
+                  smallScreen={isSmallScreen}
+                  subContent={subContent}
+                  urlPrefix="about_me"
+                />
               )}
               {section && (
                 <div style={{ flex: "1" }}>

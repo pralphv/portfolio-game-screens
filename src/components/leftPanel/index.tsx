@@ -3,7 +3,6 @@ import { clsx } from "clsx";
 import { useState } from "react";
 import DiamondIndicator from "../../components/diamondIndicator";
 
-
 interface SubContent {
   url: string;
   name: string;
@@ -16,16 +15,14 @@ export function createUrl(url: string, name: string): SubContent {
   };
 }
 
-
-
 const LeftPanel = ({
   smallScreen = false,
   subContent,
-  urlPrefix
+  urlPrefix,
 }: {
   smallScreen: boolean;
   subContent: SubContent[];
-  urlPrefix: string
+  urlPrefix: string;
 }) => {
   let { section } = useParams();
   const [activeSection, setActiveSection] = useState(section);
@@ -51,7 +48,7 @@ const LeftPanel = ({
             key={obj.url}
             className={clsx(
               section === obj.url && "bullet-point-active",
-              leavingSection === obj.url && "leaving"
+              leavingSection === obj.url && "leaving",
             )}
             onMouseEnter={() => setHoveredSection(obj.url)}
             onMouseLeave={() => setHoveredSection("")}
@@ -71,4 +68,4 @@ const LeftPanel = ({
   );
 };
 
-export default LeftPanel
+export default LeftPanel;
