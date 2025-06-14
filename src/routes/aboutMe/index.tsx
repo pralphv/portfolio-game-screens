@@ -1,52 +1,9 @@
-import { NavLink, useParams } from "react-router";
+import { useParams } from "react-router";
 import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
-import { clsx } from "clsx";
-import { useState } from "react";
-import DiamondIndicator from "../../components/diamondIndicator";
+import RightPanel from "../../components/rightPanel";
+import LeftPanel, { createUrl } from "../../components/leftPanel";
 import { useScreenWidth } from "../../utils/hooks";
-
-function createUrl(url: string, name: string) {
-  return {
-    url,
-    name,
-  };
-}
-
-const RightPanel = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => {
-  const { isSmallScreen } = useScreenWidth();
-  const ready = useDelayIfRefresh(500);
-  return (
-    ready && (
-      <>
-        <div
-          style={{ position: "relative", marginTop: isSmallScreen ? "1em" : 0 }}
-        >
-          <DiamondIndicator />
-          <div className="panel-header">
-            <div className="bullet-point" style={{ marginLeft: "0.5em" }} />
-            <h2>{title}</h2>
-          </div>
-        </div>
-        <div
-          className="panel"
-          style={{
-            height: isSmallScreen ? "65vh" : "61vh",
-            paddingLeft: "0.5em",
-          }}
-        >
-          {children}
-        </div>
-      </>
-    )
-  );
-};
 
 const Me = () => (
   <RightPanel title="Me">
@@ -57,6 +14,11 @@ const Me = () => (
         I am coding something probably no one will see, but I'm doing it anyways
         because its fun and I get to learn something that is not Leetcode.
       </p>
+      <p>
+        Sadly self-taught. Graduated with an accounting & finance major. I have
+        this random ass CFA level 1.
+      </p>
+      <p>Probably will stay full-stack for the rest of my life.</p>
     </div>
   </RightPanel>
 );
@@ -138,59 +100,6 @@ const HowThisWasMade = () => (
   </RightPanel>
 );
 
-const LeftPanel = ({ smallScreen = false }: { smallScreen: boolean }) => {
-  let { section } = useParams();
-  const [activeSection, setActiveSection] = useState(section);
-  const [leavingSection, setLeavingSection] = useState("");
-  const [hoveredSection, setHoveredSection] = useState("");
-  const handleNavClick = (path: string) => {
-    if (activeSection && activeSection !== path) {
-      setLeavingSection(activeSection);
-      // Clear leaving state after animation
-      setTimeout(() => setLeavingSection(""), 600);
-    }
-    setActiveSection(path);
-  };
-  section = `/about_me/${section}`;
-  const subContent = [
-    createUrl("/about_me/me", "Me"),
-    createUrl("/about_me/this_page", "This page"),
-    createUrl("/about_me/tech_stack", "Tech Stack"),
-    createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
-    createUrl("/about_me/how_its_made", "How it's made"),
-    createUrl("/about_me/contact", "Contact"),
-  ];
-  return (
-    <nav
-      className="panel panel-box-shadow"
-      style={{ flex: smallScreen ? "1" : "0 0 25%", height: "65vh" }}
-    >
-      <ul>
-        {subContent.map((obj) => (
-          <li
-            key={obj.url}
-            className={clsx(
-              section === obj.url && "bullet-point-active",
-              leavingSection === obj.url && "leaving",
-            )}
-            onMouseEnter={() => setHoveredSection(obj.url)}
-            onMouseLeave={() => setHoveredSection("")}
-          >
-            <div>
-              {section === obj.url && <DiamondIndicator active />}
-              {hoveredSection === obj.url && <DiamondIndicator />}
-              <div className={"bullet-point"} style={{ marginLeft: "0.5em" }} />
-              <NavLink to={obj.url} onClick={() => handleNavClick(obj.url)}>
-                {obj.name}
-              </NavLink>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
-
 const Contact = () => (
   <RightPanel title="Contact">
     <a
@@ -216,6 +125,14 @@ const AboutMe = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
   const { isSmallScreen } = useScreenWidth();
+  const subContent = [
+    createUrl("/about_me/me", "Me"),
+    createUrl("/about_me/this_page", "This page"),
+    createUrl("/about_me/tech_stack", "Tech Stack"),
+    createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
+    createUrl("/about_me/how_its_made", "How it's made"),
+    createUrl("/about_me/contact", "Contact"),
+  ];
   return (
     ready && (
       <div className="white-space">
@@ -225,7 +142,11 @@ const AboutMe = () => {
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
               {(!isSmallScreen || !section) && (
-                <LeftPanel smallScreen={isSmallScreen} />
+                <LeftPanel
+                  smallScreen={isSmallScreen}
+                  subContent={subContent}
+                  urlPrefix="about_me"
+                />
               )}
               {section && (
                 <div style={{ flex: "1" }}>
@@ -233,7 +154,7 @@ const AboutMe = () => {
                   {section === "this_page" && <ThisPage />}
                   {section === "tech_stack" && <TechStack />}
                   {section === "am_i_a_weeb" && <AmIaWeeb />}
-                  {section === "how_this_was_made" && <HowThisWasMade />}
+                  {section === "how_its_made" && <HowThisWasMade />}
                   {section === "contact" && <Contact />}
                 </div>
               )}
