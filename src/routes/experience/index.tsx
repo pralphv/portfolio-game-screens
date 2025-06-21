@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
-import { useScreenWidth } from "../../utils/hooks";
+import { useScreenWidth, useTranslation } from "../../utils/hooks";
 import LeftPanel, { createUrl } from "../../components/leftPanel";
 import RightPanel from "../../components/rightPanel";
 
@@ -65,6 +65,7 @@ const Experience = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
   const { isSmallScreen } = useScreenWidth();
+  const { t } = useTranslation();
   const subContent = [
     createUrl("/experience/yelp", "Yelp"),
     createUrl("/experience/segantii", "Segantii"),
@@ -74,7 +75,9 @@ const Experience = () => {
     ready && (
       <div className="white-space">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          {!(isSmallScreen && section) && <NierPageHeader title="Experience" />}
+          {!(isSmallScreen && section) && (
+            <NierPageHeader title={t("experience")} />
+          )}
           <div style={{ display: "flex", gap: "1em" }}>
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>

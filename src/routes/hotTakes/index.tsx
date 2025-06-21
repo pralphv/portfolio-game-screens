@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
-import { useScreenWidth } from "../../utils/hooks";
+import { useScreenWidth, useTranslation } from "../../utils/hooks";
 import LeftPanel, { createUrl } from "../../components/leftPanel";
 import RightPanel from "../../components/rightPanel";
 
@@ -23,7 +23,7 @@ const Microservices = () => (
   </RightPanel>
 );
 const Leetcode = () => (
-  <RightPanel title="Microservices">
+  <RightPanel title="Leetcode">
     <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
       <p>fuck leetcode</p>
     </div>
@@ -74,22 +74,44 @@ const SelfTaught = () => (
   </RightPanel>
 );
 
+const GoodCode = () => (
+  <RightPanel title="Good Code">
+    <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+      <p>Good code does not exist in corporate.</p>
+      <p>
+        Developers are always racing with time to deliver projects. And that
+        leads to cutting corners, like ignoring existing interface to call a
+        database directly.
+      </p>
+      <p>
+        Having separate repos with ownership controls doesn't work either.
+        Because developers will just create PRs without involving the owners,
+        and tag PMs and managers to pressure said owner to push whatever code
+        they need.
+      </p>
+    </div>
+  </RightPanel>
+);
+
 const HotTakes = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
   const { isSmallScreen } = useScreenWidth();
+  const { t } = useTranslation();
   const subContent = [
     createUrl("/hot_takes/microservices", "Microservices"),
     createUrl("/hot_takes/graphql", "GraphQL"),
     createUrl("/hot_takes/leetcode", "Leetcode"),
     createUrl("/hot_takes/system_design", "System Design"),
-    createUrl("/hot_takes/self_taught", "Self Taught"),
+    createUrl("/hot_takes/good_code", "Good Code"),
   ];
   return (
     ready && (
       <div className="white-space">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          {!(isSmallScreen && section) && <NierPageHeader title="Hot Takes" />}
+          {!(isSmallScreen && section) && (
+            <NierPageHeader title={t("hotTakes")} />
+          )}
           <div style={{ display: "flex", gap: "1em" }}>
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>
@@ -107,6 +129,7 @@ const HotTakes = () => {
                   {section === "leetcode" && <Leetcode />}
                   {section === "system_design" && <SystemDesign />}
                   {section === "self_taught" && <SelfTaught />}
+                  {section === "good_code" && <GoodCode />}
                 </div>
               )}
             </div>
