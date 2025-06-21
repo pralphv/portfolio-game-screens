@@ -3,25 +3,32 @@ import NierPageHeader from "../../components/nierPageHeader";
 import { useDelayIfRefresh } from "../../utils/hooks";
 import RightPanel from "../../components/rightPanel";
 import LeftPanel, { createUrl } from "../../components/leftPanel";
-import { useScreenWidth } from "../../utils/hooks";
+import { useScreenWidth, useTranslation } from "../../utils/hooks";
 
-const Me = () => (
-  <RightPanel title="Me">
-    <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-      <p>I'm your typical dev doing mundane tasks on the job.</p>
-      <p>
-        There's not as much cool things to do when you're in corporate. So here
-        I am coding something probably no one will see, but I'm doing it anyways
-        because its fun and I get to learn something that is not Leetcode.
-      </p>
-      <p>
-        Sadly self-taught. Graduated with an accounting & finance major. I have
-        this random ass CFA level 1.
-      </p>
-      <p>Probably will stay full-stack for the rest of my life.</p>
-    </div>
-  </RightPanel>
-);
+const Me = () => {
+  return (
+    <RightPanel title="Me">
+      <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
+        <p>I'm your typical dev doing mundane tasks on the job.</p>
+        <p>
+          There's not as much cool things to do when you're in corporate. So
+          here I am coding something probably no one will see, but I'm doing it
+          anyways because its fun and I get to learn something that is not
+          Leetcode.
+        </p>
+        <p>
+          Sadly self-taught. Graduated with an accounting & finance major. I
+          have this random ass CFA level 1.
+        </p>
+        <p>
+          Probably will stay full-stack for the rest of my life. Being able to
+          procrastinate in the other stack when I'm bored with the one I'm
+          actively working on is pretty efficient.
+        </p>
+      </div>
+    </RightPanel>
+  );
+};
 
 const ThisPage = () => (
   <RightPanel title="This Page">
@@ -120,13 +127,14 @@ const Contact = () => (
   </RightPanel>
 );
 
-const TITLE = "About Me";
 const AboutMe = () => {
   const ready = useDelayIfRefresh(500);
   const { section } = useParams();
   const { isSmallScreen } = useScreenWidth();
+  const { t } = useTranslation();
+
   const subContent = [
-    createUrl("/about_me/me", "Me"),
+    createUrl("/about_me/me", t("me")),
     createUrl("/about_me/this_page", "This page"),
     createUrl("/about_me/tech_stack", "Tech Stack"),
     createUrl("/about_me/am_i_a_weeb", "Am I a weeb"),
@@ -137,7 +145,9 @@ const AboutMe = () => {
     ready && (
       <div className="white-space">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          {!(isSmallScreen && section) && <NierPageHeader title={TITLE} />}
+          {!(isSmallScreen && section) && (
+            <NierPageHeader title={t("aboutMe")} />
+          )}
           <div style={{ display: "flex", gap: "1em" }}>
             {!(isSmallScreen && section) && <div className="dividers" />}
             <div style={{ display: "flex", gap: "2em", flex: "1" }}>

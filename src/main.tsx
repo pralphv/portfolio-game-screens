@@ -8,6 +8,8 @@ import Home from "./routes/home";
 import HotTakes from "./routes/hotTakes";
 import Layout from "./components/layout";
 import Projects from "./routes/projects";
+import Settings from "./routes/settings";
+import { TranslationProvider } from "./contexts/language/provider";
 
 const Root = () => {
   useEffect(() => {
@@ -31,6 +33,8 @@ const Root = () => {
             <Route path="/projects/:section" element={<Projects />} />
             <Route path="/hot_takes" element={<HotTakes />} />
             <Route path="/hot_takes/:section" element={<HotTakes />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings/:section" element={<Settings />} />
           </Route>
         </Routes>
       </HashRouter>
@@ -40,6 +44,8 @@ const Root = () => {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Root />
+    <TranslationProvider>
+      <Root />
+    </TranslationProvider>
   </StrictMode>,
 );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import DiamondIndicator from "../../components/diamondIndicator";
-import { useScreenWidth } from "../../utils/hooks";
+import { useScreenWidth, useTranslation } from "../../utils/hooks";
 import { clsx } from "clsx";
 
 import "./index.css";
@@ -11,6 +11,7 @@ const NavigationBar = () => {
   const [leavingLink, setLeavingLink] = useState("");
   const [hoveringItem, setHoveringItem] = useState("");
   const { isSmallScreen } = useScreenWidth();
+  const { t } = useTranslation();
   const handleNavClick = (path: string) => {
     if (activeLink && activeLink !== path) {
       setLeavingLink(activeLink);
@@ -42,39 +43,43 @@ const NavigationBar = () => {
             paddingLeft: "2em", // Keep the padding
           }}
         >
-          {["/about_me", "/experience", "/hot_takes", "/projects"].map(
-            (route) => (
-              <div
-                key={route}
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center",
+          {[
+            { route: "/about_me", display: t("aboutMe") },
+            { route: "/experience", display: t("experience") },
+            { route: "/hot_takes", display: t("hotTakes") },
+            { route: "/projects", display: t("projects") },
+            { route: "/settings", display: t("settings") },
+          ].map((obj) => (
+            <div
+              key={obj.route}
+              style={{
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <NavLink
+                to={obj.route}
+                className={({ isActive }) => {
+                  if (isActive) return "active";
+                  if (leavingLink === obj.route) return "leaving";
                 }}
+                onClick={() => handleNavClick(obj.route)}
+                onMouseEnter={() => setHoveringItem(obj.route)}
+                onMouseLeave={() => setHoveringItem("")}
               >
-                <NavLink
-                  to={route}
-                  className={({ isActive }) => {
-                    if (isActive) return "active";
-                    if (leavingLink === route) return "leaving";
-                  }}
-                  onClick={() => handleNavClick(route)}
-                  onMouseEnter={() => setHoveringItem(route)}
-                  onMouseLeave={() => setHoveringItem("")}
-                >
-                  {({ isActive }) => {
-                    return (
-                      <>
-                        {isActive && <DiamondIndicator active={isActive} />}
-                        {hoveringItem === route && <DiamondIndicator />}
-                        {route.split("/")[1].split("_").join(" ")}
-                      </>
-                    );
-                  }}
-                </NavLink>
-              </div>
-            ),
-          )}
+                {({ isActive }) => {
+                  return (
+                    <>
+                      {isActive && <DiamondIndicator active={isActive} />}
+                      {hoveringItem === obj.route && <DiamondIndicator />}
+                      {obj.display}
+                    </>
+                  );
+                }}
+              </NavLink>
+            </div>
+          ))}
         </nav>
       </div>
     </>

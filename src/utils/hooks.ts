@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigationType } from "react-router";
+import TranslationContext from "../contexts/language/context";
+import type { TranslationContextType } from "../types/translations";
 
 export const useTextTypingEffect = (fullText: string) => {
   const [i, setI] = useState(0);
@@ -57,4 +59,14 @@ export const useScreenWidth = () => {
   }, []);
 
   return { screenWidth, isSmallScreen: screenWidth < 700 };
+};
+
+export const useTranslation = (): TranslationContextType => {
+  const context = useContext(TranslationContext);
+
+  if (!context) {
+    throw new Error("useTranslation must be used within a TranslationProvider");
+  }
+
+  return context;
 };
