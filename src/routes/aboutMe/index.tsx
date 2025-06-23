@@ -170,12 +170,8 @@ const TechStack = () => {
             寫script的話，就看我想做什麼。如果是數據分析的話就當然是Python。
             Scraping的話就Node Playwrite。
           </p>
-          <p>
-            前端我是用React的。但我一直都在想用Svelte。
-          </p>
-          <p>
-            工作是有用GraphQL。但說真的好處沒有很多。
-          </p>
+          <p>前端我是用React的。但我一直都在想用Svelte。</p>
+          <p>工作是有用GraphQL。但說真的好處沒有很多。</p>
         </div>
       </RightPanel>
     );
@@ -208,9 +204,7 @@ const AmIaWeeb = () => {
     return (
       <RightPanel title={t("amIAWeeb")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>
-            才看過300套動漫怎會是宅男?
-          </p>
+          <p>才看過300套動漫怎會是宅男?</p>
           <p>學日文是因為興趣。</p>
         </div>
       </RightPanel>
@@ -280,9 +274,7 @@ const HowThisWasMade = () => {
       <RightPanel title={t("howItsMade")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
           <p>Landing page: @pixi/react</p>
-          <p>
-            其他：React跟CSS。沒有SEO就沒用SSR。
-          </p>
+          <p>其他：React跟CSS。沒有SEO就沒用SSR。</p>
           <p>
             有一些CSS是抄了{" "}
             <a

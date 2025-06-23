@@ -63,7 +63,7 @@ const Microservices = () => {
 };
 
 const Leetcode = () => {
-  const { language} = useTranslation();
+  const { language } = useTranslation();
   if (language === "en") {
     return (
       <RightPanel title="Leetcode">

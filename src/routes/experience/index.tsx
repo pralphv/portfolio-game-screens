@@ -49,12 +49,10 @@ const Yelp = () => {
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
           <p>React SSR + Python 後端 + GraphQL</p>
           <p>北美的openrice。</p>
+          <p>第一份工作是確實需要考慮scale。但其實infra team會把這個搞好。</p>
           <p>
-            第一份工作是確實需要考慮scale。但其實infra team會把這個搞好。
-          </p>
-          <p>
-            也是第一份工作需要SSR。但其實只是小心寫不會error SSR或者hydration的碼。
-            實際的server rendering是infra管理的。
+            也是第一份工作需要SSR。但其實只是小心寫不會error
+            SSR或者hydration的碼。 實際的server rendering是infra管理的。
           </p>
         </div>
       </RightPanel>
@@ -68,7 +66,6 @@ const BofA = () => {
     return (
       <RightPanel title="Bank of America">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          
           <p>
             Python. Lots of scripting to automate excel files. Thus, Pandas. As
             you would expect from mid/back office.
@@ -99,14 +96,14 @@ const BofA = () => {
     return (
       <RightPanel title="Bank of America">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-                    <p>
-            Python。很多scripting自動化excel，所以好多Pandas。是典型的back office。
+          <p>
+            Python。很多scripting自動化excel，所以好多Pandas。是典型的back
+            office。
           </p>
           <p>
-            我的第一份開發工作。當時有offer的時候還有hedge fund的infra developer。
-            到現在我還會想我到底有沒有選錯。
+            我的第一份開發工作。當時有offer的時候還有hedge fund的infra
+            developer。 到現在我還會想我到底有沒有選錯。
           </p>
-
         </div>
       </RightPanel>
     );
@@ -169,18 +166,18 @@ const Segantii = () => {
       <RightPanel title="Segantii Capital Management">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
           <p>
-            對沖基金。我是當front office developer的。上班上775，但還是最遲到最早走。
+            對沖基金。我是當front office
+            developer的。上班上775，但還是最遲到最早走。
           </p>
           <p>
-            React CSR + Python monolith. 公司只有150人所以scaling從來都不是問題。
-            不用SEO所以也沒有SSR。
+            React CSR + Python monolith.
+            公司只有150人所以scaling從來都不是問題。 不用SEO所以也沒有SSR。
           </p>
           <p>
-            有趣的事情是我們用了Redis做caching跟Pub/Sub + websockets。意外的挺好的。
+            有趣的事情是我們用了Redis做caching跟Pub/Sub +
+            websockets。意外的挺好的。
           </p>
-          <p>
-            搞笑的是我們竟然用了MongoDB。雖然到最後也不是什麼大事情。
-          </p>
+          <p>搞笑的是我們竟然用了MongoDB。雖然到最後也不是什麼大事情。</p>
           <p>預料之內好多Pandas。</p>
           <p>現在因為insider trading要關了。</p>
         </div>
