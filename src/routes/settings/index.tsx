@@ -147,7 +147,6 @@ const RightSettings = ({ selects }: { selects: RightSettingsSelects[] }) => {
             display: "flex",
             gap: "1em",
             marginTop: isSmallScreen ? "2em" : 0,
-            height: isSmallScreen ? "65vh" : "100%",
           }}
         >
           <div className="dividers" />
