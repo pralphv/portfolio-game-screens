@@ -109,7 +109,8 @@ const GraphQl = () => {
             is REST, and some GraphQL.
           </p>
           <p>
-            I just feel GraphQL doesn't bring much to do table for the amount of effort.
+            I just feel GraphQL doesn't bring much to do table for the amount of
+            effort.
           </p>
         </div>
       </RightPanel>
@@ -196,9 +197,9 @@ const SelfTaught = () => {
             be so screwed.
           </p>
           <p>
-            And it's not only learning to code. You need  Leetcode.
-            Without CS fundamentals, it's going to be so much harder to get to a
-            decent level to pass interviews.
+            And it's not only learning to code. You need Leetcode. Without CS
+            fundamentals, it's going to be so much harder to get to a decent
+            level to pass interviews.
           </p>
         </div>
       </RightPanel>

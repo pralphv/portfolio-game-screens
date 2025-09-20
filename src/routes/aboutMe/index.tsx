@@ -14,9 +14,9 @@ const Me = () => {
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
           <p>I'm your typical dev doing very exciting tasks on the job.</p>
           <p>
-            You don't always get to code things you want for a living. So
-            here I am coding something probably no one will see, but I'm doing
-            it anyways because its fun and I get to learn something that is not
+            You don't always get to code things you want for a living. So here I
+            am coding something probably no one will see, but I'm doing it
+            anyways because its fun and I get to learn something that is not
             Leetcode.
           </p>
           <p>
@@ -184,9 +184,7 @@ const AmIaWeeb = () => {
     return (
       <RightPanel title={t("amIAWeeb")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>
-            No I'm not. I just happen to have watched over 300 anime.
-          </p>
+          <p>No I'm not. I just happen to have watched over 300 anime.</p>
           <p>And no I'm not learning Japanese because of anime.</p>
         </div>
       </RightPanel>
@@ -236,8 +234,8 @@ const HowThisWasMade = () => {
             . Thank you whoever wrote this.
           </p>
           <p>
-            Don't bother checking my code because its absolute spaghetti. I did not
-            intend it to be maintanable. I just coded something out quickly
+            Don't bother checking my code because its absolute spaghetti. I did
+            not intend it to be maintanable. I just coded something out quickly
             because I have other chores to do. I don't code like this at work I
             promise.
           </p>
