@@ -15,7 +15,7 @@ const Yelp = () => {
           <p>React with SSR + Python backend services + GraphQL</p>
           <p>
             First job to actually need to have scale in mind. Although, not
-            really. And the scaling is automated by infra teams.
+            really. The scaling is automated by infra teams.
           </p>
           <p>
             First job that actually needs SSR. Although it's more like writing

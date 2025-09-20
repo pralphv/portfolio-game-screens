@@ -12,19 +12,19 @@ const Me = () => {
     return (
       <RightPanel title={t("me")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>I'm your typical dev doing mundane tasks on the job.</p>
+          <p>I'm your typical dev doing very exciting tasks on the job.</p>
           <p>
-            There's not as much cool things to do when you're in corporate. So
+            You don't always get to code things you want for a living. So
             here I am coding something probably no one will see, but I'm doing
             it anyways because its fun and I get to learn something that is not
             Leetcode.
           </p>
           <p>
             Sadly self-taught. Graduated with an accounting & finance major. I
-            have this random ass CFA level 1.
+            have this random CFA level 1 too.
           </p>
           <p>
-            Probably will stay full-stack for the rest of my life. Being able to
+            Will stay full-stack for the rest of my life. Being able to
             procrastinate in the other stack when I'm bored with the one I'm
             actively working on is pretty efficient.
           </p>
@@ -35,7 +35,7 @@ const Me = () => {
     return (
       <RightPanel title={t("me")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>普通の会社で地味な開発をやっている、よくいるエンジニアだ。</p>
+          <p>普通の会社で退屈な開発をやっている。</p>
           <p>
             企業でつまらない仕事ばかりで、退屈すぎてこのページを作った。多分誰も見てないけど。
             まあLeetcodeよりずっと楽しいし、新しいことも学べるだ。
@@ -185,7 +185,7 @@ const AmIaWeeb = () => {
       <RightPanel title={t("amIAWeeb")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
           <p>
-            No I'm not. I just happen to have watched probably over 300 anime.
+            No I'm not. I just happen to have watched over 300 anime.
           </p>
           <p>And no I'm not learning Japanese because of anime.</p>
         </div>
@@ -236,7 +236,7 @@ const HowThisWasMade = () => {
             . Thank you whoever wrote this.
           </p>
           <p>
-            Don't bother checking my code because its a shithole. I did not
+            Don't bother checking my code because its absolute spaghetti. I did not
             intend it to be maintanable. I just coded something out quickly
             because I have other chores to do. I don't code like this at work I
             promise.

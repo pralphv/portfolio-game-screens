@@ -68,7 +68,7 @@ const Leetcode = () => {
     return (
       <RightPanel title="Leetcode">
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>fuck leetcode</p>
+          <p>hate it</p>
         </div>
       </RightPanel>
     );
@@ -102,13 +102,15 @@ const GraphQl = () => {
             But then you have to find ways to avoid clients creating crazy
             queries.
           </p>
-          <p>And not all developers know GraphQL.</p>
+          <p>And most developers don't know GraphQL.</p>
           <p>Then developers have to learn the company's query tree.</p>
           <p>
             And what if the company started with REST? Now some part of the code
-            is REST, and some GraphQL. AKA politics.
+            is REST, and some GraphQL.
           </p>
-          <p>At this point, just use REST.</p>
+          <p>
+            I just feel GraphQL doesn't bring much to do table for the amount of effort.
+          </p>
         </div>
       </RightPanel>
     );
@@ -158,7 +160,7 @@ const SystemDesign = () => {
     return (
       <RightPanel title={t("systemDesign")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>System design interviews are just as grindable as Leetcode.</p>
+          <p>just as grindable as Leetcode</p>
         </div>
       </RightPanel>
     );
@@ -187,14 +189,14 @@ const SelfTaught = () => {
     return (
       <RightPanel title={t("selfTaught")}>
         <div style={{ display: "flex", gap: "1em", flexDirection: "column" }}>
-          <p>People should stfu about self teaching.</p>
+          <p>Self teaching no longer flies.</p>
           <p>
             You need a CS degree. I was lucky to get my foot in the industry
             before it essentially closed. If I graduated a few years later, I'd
             be so screwed.
           </p>
           <p>
-            And it's not only learning to code. You need freaking Leetcode.
+            And it's not only learning to code. You need  Leetcode.
             Without CS fundamentals, it's going to be so much harder to get to a
             decent level to pass interviews.
           </p>
@@ -301,7 +303,7 @@ const HotTakes = () => {
     createUrl("/hot_takes/leetcode", "Leetcode"),
     createUrl("/hot_takes/system_design", t("systemDesign")),
     createUrl("/hot_takes/self_taught", t("selfTaught")),
-    createUrl("/hot_takes/clean_code", t("cleanCode")),
+    // createUrl("/hot_takes/clean_code", t("cleanCode")),
   ];
   return (
     ready && (
